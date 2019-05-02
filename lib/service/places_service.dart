@@ -4,7 +4,7 @@ import 'package:google_maps_webservice/places.dart';
 class PlacesService {
   static const num _radius = 3000;
   final _googlePlacesService =
-      GoogleMapsPlaces(apiKey: AppConstants.PlacesApiKey);
+      GoogleMapsPlaces(apiKey: AppConstants.placesApiKey);
 
   Future<List<PlacesSearchResult>> getNearbyPlaces(
       double latitude, double longitude, String keyword) async {

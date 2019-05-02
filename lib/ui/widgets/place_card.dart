@@ -17,10 +17,11 @@ class PlaceCard extends StatelessWidget {
     String photoUrl;
     if (_place.photos != null) {
       photoUrl =
-          "https://maps.googleapis.com/maps/api/place/photo?maxwidth=512&photoreference=${_place.photos.first.photoReference}&key=${AppConstants.PlacesApiKey}";
+          "https://maps.googleapis.com/maps/api/place/photo?maxwidth=512&photoreference=${_place.photos.first.photoReference}&key=${AppConstants.placesApiKey}";
     }
 
     return Card(
+      clipBehavior: Clip.antiAliasWithSaveLayer,
       elevation: 4,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(16))),
@@ -42,7 +43,7 @@ class PlaceCard extends StatelessWidget {
                           ? CachedNetworkImage(
                               imageUrl: photoUrl,
                               fadeInDuration: Duration(milliseconds: 250),
-                              fit: BoxFit.fitWidth,
+                              fit: BoxFit.cover,
                             )
                           : Icon(
                               Icons.image,
@@ -59,11 +60,14 @@ class PlaceCard extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         _place.name,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                         style: AppTheme.PlaceTitleTextStyle,
                       ),
                       Container(
                         margin: EdgeInsets.only(top: 4),
                         child: Text(_place.vicinity,
+                            maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: AppTheme.PlaceAddressTextStyle),
                       ),

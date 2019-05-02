@@ -63,15 +63,15 @@ class _MainPageState extends State<MainPage> {
         children: <Widget>[
           GoogleMap(
             markers: Set.from(_markers),
+            myLocationEnabled: true,
             initialCameraPosition:
                 CameraPosition(target: _currentLocation, zoom: 15),
             onMapCreated: _onMapCreated,
-            myLocationEnabled: true,
           ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: 272,
+              height: 256,
               child: _buildPlacesCarousel(),
             ),
           )
